@@ -1,6 +1,6 @@
-diff -uNr orig/mono-3.0.3/mcs/class/corlib/System.Runtime.Remoting/Identity.cs patched/mono-3.0.3/mcs/class/corlib/System.Runtime.Remoting/Identity.cs
---- orig/mono-3.0.3/mcs/class/corlib/System.Runtime.Remoting/Identity.cs	2012-04-12 16:49:11.000000000 +0400
-+++ patched/mono-3.0.3/mcs/class/corlib/System.Runtime.Remoting/Identity.cs	2012-10-18 14:07:43.000000000 +0400
+diff -uNr orig/mono-3.0.6/mcs/class/corlib/System.Runtime.Remoting/Identity.cs patched/mono-3.0.6/mcs/class/corlib/System.Runtime.Remoting/Identity.cs
+--- orig/mono-3.0.6/mcs/class/corlib/System.Runtime.Remoting/Identity.cs	2012-04-12 16:49:11.000000000 +0400
++++ patched/mono-3.0.6/mcs/class/corlib/System.Runtime.Remoting/Identity.cs	2012-10-18 14:07:43.000000000 +0400
 @@ -36,6 +36,7 @@
  
  namespace System.Runtime.Remoting
@@ -9,9 +9,9 @@ diff -uNr orig/mono-3.0.3/mcs/class/corlib/System.Runtime.Remoting/Identity.cs p
  	internal abstract class Identity
  	{
  		// An Identity object holds remoting information about
-diff -uNr orig/mono-3.0.3/mcs/class/corlib/System.Runtime.Remoting.Messaging/ArgInfo.cs patched/mono-3.0.3/mcs/class/corlib/System.Runtime.Remoting.Messaging/ArgInfo.cs
---- orig/mono-3.0.3/mcs/class/corlib/System.Runtime.Remoting.Messaging/ArgInfo.cs	2012-04-12 16:49:11.000000000 +0400
-+++ patched/mono-3.0.3/mcs/class/corlib/System.Runtime.Remoting.Messaging/ArgInfo.cs	2012-10-18 14:07:43.000000000 +0400
+diff -uNr orig/mono-3.0.6/mcs/class/corlib/System.Runtime.Remoting.Messaging/ArgInfo.cs patched/mono-3.0.6/mcs/class/corlib/System.Runtime.Remoting.Messaging/ArgInfo.cs
+--- orig/mono-3.0.6/mcs/class/corlib/System.Runtime.Remoting.Messaging/ArgInfo.cs	2012-04-12 16:49:11.000000000 +0400
++++ patched/mono-3.0.6/mcs/class/corlib/System.Runtime.Remoting.Messaging/ArgInfo.cs	2012-10-18 14:07:43.000000000 +0400
 @@ -36,6 +36,7 @@
  {
  	internal enum ArgInfoType : byte { In, Out };
@@ -20,9 +20,9 @@ diff -uNr orig/mono-3.0.3/mcs/class/corlib/System.Runtime.Remoting.Messaging/Arg
  	internal class ArgInfo
  	{
  		int[] _paramMap;
-diff -uNr orig/mono-3.0.3/mcs/class/corlib/System.Runtime.Remoting.Messaging/MethodCall.cs patched/mono-3.0.3/mcs/class/corlib/System.Runtime.Remoting.Messaging/MethodCall.cs
---- orig/mono-3.0.3/mcs/class/corlib/System.Runtime.Remoting.Messaging/MethodCall.cs	2012-04-12 16:49:11.000000000 +0400
-+++ patched/mono-3.0.3/mcs/class/corlib/System.Runtime.Remoting.Messaging/MethodCall.cs	2012-10-18 14:07:43.000000000 +0400
+diff -uNr orig/mono-3.0.6/mcs/class/corlib/System.Runtime.Remoting.Messaging/MethodCall.cs patched/mono-3.0.6/mcs/class/corlib/System.Runtime.Remoting.Messaging/MethodCall.cs
+--- orig/mono-3.0.6/mcs/class/corlib/System.Runtime.Remoting.Messaging/MethodCall.cs	2012-04-12 16:49:11.000000000 +0400
++++ patched/mono-3.0.6/mcs/class/corlib/System.Runtime.Remoting.Messaging/MethodCall.cs	2012-10-18 14:07:43.000000000 +0400
 @@ -312,6 +312,13 @@
  				}
  
@@ -37,20 +37,18 @@ diff -uNr orig/mono-3.0.3/mcs/class/corlib/System.Runtime.Remoting.Messaging/Met
  				if (requestType == null)
  					throw new RemotingException ("Cannot cast from client type '" + _typeName + "' to server type '" + type.FullName + "'");
  
-diff -uNr orig/mono-3.0.3/mcs/class/corlib/System.Runtime.Remoting.Messaging/MethodReturnDictionary.cs patched/mono-3.0.3/mcs/class/corlib/System.Runtime.Remoting.Messaging/MethodReturnDictionary.cs
---- orig/mono-3.0.3/mcs/class/corlib/System.Runtime.Remoting.Messaging/MethodReturnDictionary.cs	2012-04-12 16:49:11.000000000 +0400
-+++ patched/mono-3.0.3/mcs/class/corlib/System.Runtime.Remoting.Messaging/MethodReturnDictionary.cs	2012-10-18 14:09:21.000000000 +0400
+diff -uNr orig/mono-3.0.6/mcs/class/corlib/System.Runtime.Remoting.Messaging/MethodReturnDictionary.cs patched/mono-3.0.6/mcs/class/corlib/System.Runtime.Remoting.Messaging/MethodReturnDictionary.cs
 @@ -33,6 +33,7 @@
  
  namespace System.Runtime.Remoting.Messaging
  {
-+[Serializable]
++	[Serializable]
  	internal class MethodReturnDictionary : MethodDictionary
  	{
  		public static string[] InternalReturnKeys = new string[] {"__Uri", "__MethodName", "__TypeName", "__MethodSignature", "__OutArgs", "__Return", "__CallContext"};
-diff -uNr orig/mono-3.0.3/mcs/class/corlib/System.Runtime.Remoting.Messaging/ReturnMessage.cs patched/mono-3.0.3/mcs/class/corlib/System.Runtime.Remoting.Messaging/ReturnMessage.cs
---- orig/mono-3.0.3/mcs/class/corlib/System.Runtime.Remoting.Messaging/ReturnMessage.cs	2012-04-12 16:49:11.000000000 +0400
-+++ patched/mono-3.0.3/mcs/class/corlib/System.Runtime.Remoting.Messaging/ReturnMessage.cs	2012-10-18 14:07:43.000000000 +0400
+diff -uNr orig/mono-3.0.6/mcs/class/corlib/System.Runtime.Remoting.Messaging/ReturnMessage.cs patched/mono-3.0.6/mcs/class/corlib/System.Runtime.Remoting.Messaging/ReturnMessage.cs
+--- orig/mono-3.0.6/mcs/class/corlib/System.Runtime.Remoting.Messaging/ReturnMessage.cs	2012-04-12 16:49:11.000000000 +0400
++++ patched/mono-3.0.6/mcs/class/corlib/System.Runtime.Remoting.Messaging/ReturnMessage.cs	2012-10-18 14:07:43.000000000 +0400
 @@ -38,6 +38,7 @@
  namespace System.Runtime.Remoting.Messaging 
  {

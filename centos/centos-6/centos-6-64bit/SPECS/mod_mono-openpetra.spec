@@ -1,5 +1,5 @@
 %define name mod_mono-openpetra
-%define version 3.0.3
+%define version 3.0.6
 %define DATE    %(date +%%Y%%m%%d)
 %define release 0
 %define MonoPath /opt/mono-openpetra
@@ -44,6 +44,8 @@ install -m 644 mod_mono.conf $RPM_BUILD_ROOT%{ApacheConfPath}
 %{ApacheConfPath}/mod_mono.conf
 
 %changelog
+* Fri Mar 15 2013 Timotheus Pokorra <timotheus.pokorra@solidcharity.com>
+- upgrade to Mono 3.0.6
 * Fri Jan 25 2013 Timotheus Pokorra <timotheus.pokorra@solidcharity.com>
 - build for Mono 3.0
 * Wed Nov 28 2012 Timotheus Pokorra <timotheus.pokorra@solidcharity.com>

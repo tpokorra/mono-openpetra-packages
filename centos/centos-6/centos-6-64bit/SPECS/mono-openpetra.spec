@@ -1,7 +1,7 @@
 %define name mono-openpetra
-%define version 3.0.3
+%define version 3.0.6
 %define DATE    %(date +%%Y%%m%%d)
-%define release 1
+%define release 0
 %define MonoPath /opt/mono-openpetra
 
 Summary: Mono with fixes for OpenPetra
@@ -45,7 +45,9 @@ sudo make install
 ##sudo mv %{MonoPath}/lib/mono/4.0 %{MonoPath}/lib/mono/4.0old
 #sudo rm -Rf %{MonoPath}/lib/mono/4.0
 #sudo ln -s %{MonoPath}/lib/mono/4.5 %{MonoPath}/lib/mono/4.0
-#sudo ln -s %{MonoPath}/lib/mono/4.5/mcs.exe %{MonoPath}/lib/mono/4.5/dmcs.exe
+
+# this is still needed for nant-0.92
+sudo ln -s %{MonoPath}/lib/mono/4.5/mcs.exe %{MonoPath}/lib/mono/4.5/dmcs.exe
 
 #needed for building nant
 sudo ln -s %{MonoPath}/lib/mono/4.5/mcs.exe %{MonoPath}/lib/mono/2.0/gmcs.exe
@@ -85,6 +87,8 @@ cd $RPM_BUILD_ROOT%{MonoPath}/lib/mono; ln -s 4.5 4.0
 %{MonoPath}
 
 %changelog
+* Fri Mar 15 2013 Timotheus Pokorra <timotheus.pokorra@solidcharity.com>
+- upgrade to Mono 3.0.6
 * Fri Jan 25 2013 Timotheus Pokorra <timotheus.pokorra@solidcharity.com>
 - exclude mod_mono from this package
 * Tue Jan 22 2013 Timotheus Pokorra <timotheus.pokorra@solidcharity.com>
