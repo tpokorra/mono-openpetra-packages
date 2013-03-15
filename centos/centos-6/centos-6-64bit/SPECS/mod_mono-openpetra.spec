@@ -1,9 +1,9 @@
 %define name mod_mono-openpetra
 %define version 3.0.6
 %define DATE    %(date +%%Y%%m%%d)
-%define release 0
+%define release 1
 %define MonoPath /opt/mono-openpetra
-%define ApacheModulesPath /usr/lib64/httpd/modules/
+%define ApacheModulesPath /usr/%{_lib}/httpd/modules/
 %define ApacheConfPath /etc/httpd/conf.d/
 
 Summary: mod_Mono for OpenPetra
