@@ -1,7 +1,7 @@
 %define name mono-openpetra
 %define version 3.0.6
 %define DATE    %(date +%%Y%%m%%d)
-%define release 0
+%define release 1
 %define MonoPath /opt/mono-openpetra
 
 Summary: Mono with fixes for OpenPetra
@@ -12,12 +12,14 @@ Packager: Timotheus Pokorra <timotheus.pokorra@solidcharity.com>
 License: GPL
 Group: OpenPetra Developers
 Requires: pkgconfig
+#Recommends: libgdiplus liberation-mono-fonts
 BuildRequires: gcc libtool bison gettext make bzip2 automake gcc-c++ patch httpd-devel
 Source: mono-openpetra-%{version}.tar.gz
 Source1: mono-%{version}.tar.bz2
 Source2: xsp-02c073d70cf48e0f5a203c9d1058dcaa3040c8f6.zip
 Source3: mod_mono-7051f21ba693536f84de43b6c9047eeb0698b8de.zip
 Source4: nant-0.92-src.tar.gz
+Source5: uncrustify-0.56.tar.gz
 Patch0: crossdomainmarshaller-fix.patch
 
 %description
@@ -30,6 +32,7 @@ Mono with fixes for OpenPetra.
 %setup -T -D -a 2
 %setup -T -D -a 3
 %setup -T -D -a 4
+%setup -T -D -a 5
 %patch0 -p1
 
 %build
@@ -61,13 +64,24 @@ make;
 sudo make install
 
 cd $BUILDDIR/mod_mono-7051f21ba693536f84de43b6c9047eeb0698b8de
+# CentOS5: autoheader: error: AC_CONFIG_HEADERS not found in configure.in
+sed -i 's/AM_CONFIG_HEADER/AC_CONFIG_HEADER/g' configure.in
 ./autogen.sh --prefix=%{MonoPath} --disable-docs
 make
 sudo make install
 
+# mono-openpetra should not depend on httpd, therefore copy the lib; mod_mono-openpetra creates the symbolic link in /usr/lib/httpd/modules
+sudo cp /usr/%{_lib}/httpd/modules/mod_mono.so.0.0.0 %{MonoPath}/lib/mod_mono.so
+
 cd $BUILDDIR/nant-0.92
 sudo PATH=%{MonoPath}/bin:$PATH PKG_CONFIG_PATH=%{MonoPath}/lib/pkgconfig make install prefix=%{MonoPath}
 sudo rm -Rf $BUILDDIR/nant-0.92
+
+cd $BUILDDIR/uncrustify-0.56
+./configure --prefix=%{MonoPath}
+make
+sudo make install
+rm -Rf $BUILDDIR/uncrustify-0.56
 
 %install
 # Install the files to the build root
@@ -86,7 +100,14 @@ cd $RPM_BUILD_ROOT%{MonoPath}/lib/mono; ln -s 4.5 4.0
 %files
 %{MonoPath}
 
+%post
+#needed for nant generateSolution.
+#could require libgdiplus, but not necessary for server operation, just for development environment
+sudo ln -sf /usr/%{_lib}/libgdiplus.so.0 %{MonoPath}/lib/libgdiplus.so 
+
 %changelog
+* Sat Mar 16 2013 Timotheus Pokorra <timotheus.pokorra@solidcharity.com>
+- use symbolic link for mod_mono.so
 * Fri Mar 15 2013 Timotheus Pokorra <timotheus.pokorra@solidcharity.com>
 - upgrade to Mono 3.0.6
 * Fri Jan 25 2013 Timotheus Pokorra <timotheus.pokorra@solidcharity.com>

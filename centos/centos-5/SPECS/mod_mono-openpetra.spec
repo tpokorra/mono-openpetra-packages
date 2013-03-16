@@ -1,7 +1,7 @@
 %define name mod_mono-openpetra
 %define version 3.0.6
 %define DATE    %(date +%%Y%%m%%d)
-%define release 1
+%define release 2
 %define MonoPath /opt/mono-openpetra
 %define ApacheModulesPath /usr/%{_lib}/httpd/modules/
 %define ApacheConfPath /etc/httpd/conf.d/
@@ -32,8 +32,8 @@ mod_mono for OpenPetra.
 # Install the files to the build root
 install -d -m 755 $RPM_BUILD_ROOT%{ApacheModulesPath}
 install -d -m 755 $RPM_BUILD_ROOT%{ApacheConfPath}
-install -m 755 mod_mono.so $RPM_BUILD_ROOT%{ApacheModulesPath}
 install -m 644 mod_mono.conf $RPM_BUILD_ROOT%{ApacheConfPath}
+ln -sf /opt/mono-openpetra/lib/mod_mono.so $RPM_BUILD_ROOT%{ApacheModulesPath}
 
 %clean
 # Clean up after ourselves, but be careful in case someone sets a bad buildroot
@@ -44,6 +44,8 @@ install -m 644 mod_mono.conf $RPM_BUILD_ROOT%{ApacheConfPath}
 %{ApacheConfPath}/mod_mono.conf
 
 %changelog
+* Sat Mar 16 2013 Timotheus Pokorra <timotheus.pokorra@solidcharity.com>
+- use symbolic link for mod_mono.so
 * Fri Mar 15 2013 Timotheus Pokorra <timotheus.pokorra@solidcharity.com>
 - upgrade to Mono 3.0.6
 * Fri Jan 25 2013 Timotheus Pokorra <timotheus.pokorra@solidcharity.com>
