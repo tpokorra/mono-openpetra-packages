@@ -8,7 +8,7 @@ then
     exit
 fi
 
-wget http://sourceforge.net/projects/openpetraorg/files/openpetraorg/mono-openpetra/debian-6.0/mono-openpetra-$MONOVERSION-src.tar/download
+#wget http://sourceforge.net/projects/openpetraorg/files/openpetraorg/mono-openpetra/debian-6.0/mono-openpetra-$MONOVERSION-src.tar/download
 
 sudo rm -Rf $MONOOPENPETRADIR
 
