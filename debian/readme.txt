@@ -11,9 +11,15 @@ visudo
 
 su - timotheusp
 
+wget http://sourceforge.net/projects/openpetraorg/files/openpetraorg/mono-openpetra/debian-6.0/mono-openpetra-3.0.6-src.tar/download
+tar xf mono-openpetra-3.0.6.src.tar
+
+mkdir tmp
+cd tmp
 tar xzf ../src/debian.tar.gz
 # MANUALTODO update changelog
 tar czf ../src/debian.tar.gz debian
+cd ..
 
 now run the script create-mono-openpetra-deb.sh as user timotheusp:
 ./create-mono-openpetra-deb.sh 3.0.6 i386
