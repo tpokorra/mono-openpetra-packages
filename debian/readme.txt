@@ -11,8 +11,8 @@ visudo
 
 su - timotheusp
 
-wget http://sourceforge.net/projects/openpetraorg/files/openpetraorg/mono-openpetra/debian-6.0/mono-openpetra-3.0.6-src.tar/download
-tar xf mono-openpetra-3.0.6.src.tar
+wget http://sourceforge.net/projects/openpetraorg/files/openpetraorg/mono-openpetra/debian-6.0/mono-openpetra-3.0.6.src.tar/download  --output-document=mono-openpetra.src.tar
+tar xf mono-openpetra.src.tar
 
 mkdir tmp
 cd tmp
