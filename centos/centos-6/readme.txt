@@ -20,13 +20,16 @@ wget http://sourceforge.net/projects/openpetraorg/files/openpetraorg/mono-openpe
 rpm -i *.src.rpm
 
 cd rpmbuild
-./createrelease 3.0.6
+./createsources 3.0.6
 # need to modify the spec file, version and build number
 
 rpmbuild -ba SPECS/mono-openpetra.spec
 rpmbuild -ba SPECS/mod_mono-openpetra.spec
 
-upload src and rpm packages to Sourceforge
+upload src and rpm packages to Sourceforge:
+ sftp pokorra@frs.sourceforge.net
+ cd /home/pfs/project/openpetraorg/openpetraorg/mono-openpetra/centos6
+ put ...
 
 useful git commands:
  git add .
