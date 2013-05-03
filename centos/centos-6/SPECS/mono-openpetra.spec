@@ -1,7 +1,7 @@
 %define name mono-openpetra
 %define version 3.0.6
 %define DATE    %(date +%%Y%%m%%d)
-%define release 1
+%define release 2
 %define MonoPath /opt/mono-openpetra
 
 Summary: Mono with fixes for OpenPetra
@@ -21,6 +21,8 @@ Source3: mod_mono-7051f21ba693536f84de43b6c9047eeb0698b8de.zip
 Source4: nant-0.92-src.tar.gz
 Source5: uncrustify-0.56.tar.gz
 Patch0: crossdomainmarshaller-fix.patch
+Patch1: httpwebrequest.patch
+Patch2: imagelist.patch
 
 %description
 Mono with fixes for OpenPetra.
