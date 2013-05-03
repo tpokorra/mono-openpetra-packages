@@ -1,6 +1,6 @@
-yum install gcc libtool bison gettext make bzip2 automake gcc-c++ patch httpd-devel rpm-build
+yum -y install gcc libtool bison gettext make bzip2 automake gcc-c++ patch httpd-devel rpm-build
 rpm -Uhv http://ftp.uni-kl.de/pub/linux/fedora-epel/6/i386/epel-release-6-8.noarch.rpm
-yum install git-core
+yum -y install git-core
 
 adduser timotheusp
 passwd timotheusp
