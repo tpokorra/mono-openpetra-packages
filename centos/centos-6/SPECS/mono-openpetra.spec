@@ -1,7 +1,7 @@
 %define name mono-openpetra
 %define version 3.0.6
 %define DATE    %(date +%%Y%%m%%d)
-%define release 2
+%define release 3
 %define MonoPath /opt/mono-openpetra
 
 Summary: Mono with fixes for OpenPetra
@@ -36,6 +36,8 @@ Mono with fixes for OpenPetra.
 %setup -T -D -a 4
 %setup -T -D -a 5
 %patch0 -p1
+%patch1 -p1
+%patch2 -p1
 
 %build
 # Configure and make source
@@ -108,6 +110,8 @@ cd $RPM_BUILD_ROOT%{MonoPath}/lib/mono; ln -s 4.5 4.0
 sudo ln -sf /usr/%{_lib}/libgdiplus.so.0 %{MonoPath}/lib/libgdiplus.so 
 
 %changelog
+* Sat May 04 2013 Timotheus Pokorra <timotheus.pokorra@solidcharity.com>
+- add two more patches, for imagelist and httpwebrequest
 * Sat Mar 16 2013 Timotheus Pokorra <timotheus.pokorra@solidcharity.com>
 - use symbolic link for mod_mono.so
 * Fri Mar 15 2013 Timotheus Pokorra <timotheus.pokorra@solidcharity.com>

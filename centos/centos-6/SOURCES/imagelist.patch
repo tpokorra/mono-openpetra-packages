@@ -1,23 +1,23 @@
-diff -uNr -uNr orig/mono-3.0.6/mcs/class/Managed.Windows.Forms/System.Windows.Forms/ImageListStreamer.cs patched/mono-3.0.6/mcs/class/Managed.Windows.Forms/System.Windows.Forms/ImageListStreamer.cs
---- orig/mono-3.0.6/mcs/class/Managed.Windows.Forms/System.Windows.Forms/ImageListStreamer.cs   2013-02-27 19:58:19.000000000 +0300
-+++ patched/mono-3.0.6/mcs/class/Managed.Windows.Forms/System.Windows.Forms/ImageListStreamer.cs        2013-05-03 16:07:23.000000000 +0400
+diff -uNr orig/mono-3.0.6/mcs/class/Managed.Windows.Forms/System.Windows.Forms/ImageListStreamer.cs patched/mono-3.0.6/mcs/class/Managed.Windows.Forms/System.Windows.Forms/ImageListStreamer.cs
+--- orig/mono-3.0.6/mcs/class/Managed.Windows.Forms/System.Windows.Forms/ImageListStreamer.cs	2013-02-27 17:58:19.000000000 +0100
++++ patched/mono-3.0.6/mcs/class/Managed.Windows.Forms/System.Windows.Forms/ImageListStreamer.cs	2013-05-04 07:14:30.636721564 +0200
 @@ -150,7 +150,8 @@
-                }
-                */
-
--               static byte [] header = new byte []{ 77, 83, 70, 116, 73, 76, 3, 0 };
-+                // fix see https://bugzilla.xamarin.com/show_bug.cgi?id=3841
-+               static byte [] header = new byte []{ 77, 83, 70, 116, 73, 76, 1, 1 };
-                public void GetObjectData (SerializationInfo si, StreamingContext context)
-                {
-                        MemoryStream stream = new MemoryStream ();
+ 		}
+ 		*/
+ 
+-		static byte [] header = new byte []{ 77, 83, 70, 116, 73, 76, 3, 0 };
++		// fix see https://bugzilla.xamarin.com/show_bug.cgi?id=3841
++		static byte [] header = new byte []{ 77, 83, 70, 116, 73, 76, 1, 1 };
+ 		public void GetObjectData (SerializationInfo si, StreamingContext context)
+ 		{
+ 			MemoryStream stream = new MemoryStream ();
 @@ -169,7 +170,8 @@
-                        writer.Write ((ushort) (images [0].Width));
-                        writer.Write ((ushort) (images [0].Height));
-                        writer.Write (0xFFFFFFFF); //BackColor.ToArgb ()); //FIXME: should set the right one here.
--                       writer.Write ((ushort) 0x1009);
-+                        // fix see https://bugzilla.xamarin.com/show_bug.cgi?id=3841
-+                       writer.Write ((ushort) 0x21);
-                        for (int i = 0; i < 4; i++)
-                                writer.Write ((short) -1);
-
+ 			writer.Write ((ushort) (images [0].Width));
+ 			writer.Write ((ushort) (images [0].Height));
+ 			writer.Write (0xFFFFFFFF); //BackColor.ToArgb ()); //FIXME: should set the right one here.
+-			writer.Write ((ushort) 0x1009);
++			// fix see https://bugzilla.xamarin.com/show_bug.cgi?id=3841
++                        writer.Write ((ushort) 0x21);
+ 			for (int i = 0; i < 4; i++)
+ 				writer.Write ((short) -1);
+ 
