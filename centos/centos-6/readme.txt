@@ -2,6 +2,14 @@ yum -y install gcc libtool bison gettext make bzip2 automake gcc-c++ patch httpd
 rpm -Uhv http://ftp.uni-kl.de/pub/linux/fedora-epel/6/i386/epel-release-6-8.noarch.rpm
 yum -y install git-core
 
+search on google for: rpm sqlite3 3.7 centos 6
+at http://rpm.pbone.net/, you find:
+ftp://ftp.pbone.net/mirror/ftp5.gwdg.de/pub/opensuse/repositories/Application:/Geo/CentOS_6/x86_64/sqlite-3.7.16-97.1.x86_64.rpm
+and
+ftp://ftp.pbone.net/mirror/ftp5.gwdg.de/pub/opensuse/repositories/Application:/Geo/CentOS_6/i686/sqlite-3.7.16-97.1.i686.rpm
+
+wget, and rpm -Uhv sqlite*.rpm
+
 adduser timotheusp
 passwd timotheusp
 visudo
