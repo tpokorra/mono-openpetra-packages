@@ -1,7 +1,7 @@
 %define name mono-openpetra
 %define version 3.0.6
 %define DATE    %(date +%%Y%%m%%d)
-%define release 3
+%define release 4
 %define MonoPath /opt/mono-openpetra
 
 Summary: Mono with fixes for OpenPetra
@@ -14,6 +14,7 @@ Group: OpenPetra Developers
 Requires: pkgconfig
 #Recommends: libgdiplus liberation-mono-fonts
 BuildRequires: gcc libtool bison gettext make bzip2 automake gcc-c++ patch httpd-devel
+BuildRequires: sqlite3 >= 3.7.11
 Source: mono-openpetra-%{version}.tar.gz
 Source1: mono-%{version}.tar.bz2
 Source2: xsp-02c073d70cf48e0f5a203c9d1058dcaa3040c8f6.zip
@@ -110,6 +111,8 @@ cd $RPM_BUILD_ROOT%{MonoPath}/lib/mono; ln -s 4.5 4.0
 sudo ln -sf /usr/%{_lib}/libgdiplus.so.0 %{MonoPath}/lib/libgdiplus.so 
 
 %changelog
+* Tue May 14 2013 Timotheus Pokorra <timotheus.pokorra@solidcharity.com>
+- add dependancy on newer sqlite3
 * Sat May 04 2013 Timotheus Pokorra <timotheus.pokorra@solidcharity.com>
 - add two more patches, for imagelist and httpwebrequest
 * Sat Mar 16 2013 Timotheus Pokorra <timotheus.pokorra@solidcharity.com>
